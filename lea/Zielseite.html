@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zielseite</title>
+	
+	<style>img{max-width:100%;height:auto;display:block;margin:20px auto;}</style>
+
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+
+  <h2>Screenshot</h2>
+  <img id="snapshot" alt="Kartenbild mit Zeichnung"/>
+
+
+  <h2>GeoJSON</h2>
+  <pre id="output"></pre>
+
+  <script>
+    // Bild laden
+    const imgData = localStorage.getItem("mapSnapshot");
+    const imgEl = document.getElementById("snapshot");
+    if (imgData) imgEl.src = imgData;
+    else imgEl.alt = "Kein Screenshot gefunden.";
+
+    // GeoJSON anzeigen
+    const raw = localStorage.getItem("polygonData");
+    const out = document.getElementById("output");
+    out.textContent = raw ? JSON.stringify(JSON.parse(raw), null, 2)
+                          : "Keine GeoJSON-Daten gefunden.";
+						  
+	
+	
+  </script>
+
+</body>
+</html>
